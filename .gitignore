@@ -1,4 +1,5 @@
 node_modules/
 dist/
+assets/built/
 .DS_Store
 *.zip
