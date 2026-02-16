@@ -1,0 +1,37 @@
+{{!--
+    Category / tag posts component – top 3 posts from a given category (tag).
+    In Ghost, "categories" are represented as tags; use the tag slug.
+
+    Parameters:
+    * tagSlug (string, required) – slug of the tag/category (e.g. "news", "getting-started")
+    * title (string, optional) – section heading (default: "Latest from [tag]")
+--}}
+{{#if tagSlug}}
+    {{#get "posts" filter="tag:{{tagSlug}}" include="authors" limit="3" as |categoryPosts|}}
+        {{#if categoryPosts}}
+            <section class="gh-category-posts gh-outer">
+                <div class="gh-category-posts-inner gh-inner">
+                    <h2 class="gh-category-posts-title is-title">
+                        {{#if title}}{{title}}{{else}}Latest from {{tagSlug}}{{/if}}
+                    </h2>
+                    <div class="gh-category-posts-feed">
+                        {{#foreach categoryPosts}}
+                            <article class="gh-category-posts-card">
+                                <a class="gh-category-posts-card-link" href="{{url}}">
+                                    <h3 class="gh-category-posts-card-title is-title">{{title}}</h3>
+                                    {{#if custom_excerpt}}
+                                        <p class="gh-category-posts-card-excerpt is-body">{{custom_excerpt}}</p>
+                                    {{else}}
+                                        {{#if excerpt}}
+                                            <p class="gh-category-posts-card-excerpt is-body">{{excerpt}}</p>
+                                        {{/if}}
+                                    {{/if}}
+                                </a>
+                            </article>
+                        {{/foreach}}
+                    </div>
+                </div>
+            </section>
+        {{/if}}
+    {{/get}}
+{{/if}}
