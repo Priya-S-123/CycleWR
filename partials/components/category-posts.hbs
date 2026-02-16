@@ -1,35 +1,28 @@
 {{!--
     Category / tag posts component – top 3 posts from a given category (tag).
     In Ghost, "categories" are represented as tags; use the tag slug.
+    Uses the same layout and styling as the post-list component.
 
     Parameters:
     * tagSlug (string, required) – slug of the tag/category (e.g. "news", "getting-started")
     * title (string, optional) – section heading (default: "Latest from [tag]")
+    * postFeedStyle (string, optional) – "List" or "Grid" to match post-list (default: from @custom.post_feed_style)
 --}}
 {{#if tagSlug}}
     {{#get "posts" filter="tag:{{tagSlug}}" include="authors" limit="3" as |categoryPosts|}}
         {{#if categoryPosts}}
-            <section class="gh-category-posts gh-outer">
-                <div class="gh-category-posts-inner gh-inner">
-                    <h2 class="gh-category-posts-title is-title">
+            <section class="gh-container is-category is-{{#match postFeedStyle "List"}}list{{else}}grid{{/match}}{{#unless @custom.show_images_in_feed}} no-image{{/unless}} gh-outer">
+                <div class="gh-container-inner gh-inner">
+                    <h2 class="gh-container-title">
                         {{#if title}}{{title}}{{else}}Latest from {{tagSlug}}{{/if}}
                     </h2>
-                    <div class="gh-category-posts-feed">
-                        {{#foreach categoryPosts}}
-                            <article class="gh-category-posts-card">
-                                <a class="gh-category-posts-card-link" href="{{url}}">
-                                    <h3 class="gh-category-posts-card-title is-title">{{title}}</h3>
-                                    {{#if custom_excerpt}}
-                                        <p class="gh-category-posts-card-excerpt is-body">{{custom_excerpt}}</p>
-                                    {{else}}
-                                        {{#if excerpt}}
-                                            <p class="gh-category-posts-card-excerpt is-body">{{excerpt}}</p>
-                                        {{/if}}
-                                    {{/if}}
-                                </a>
-                            </article>
-                        {{/foreach}}
-                    </div>
+                    <main class="gh-main">
+                        <div class="gh-feed">
+                            {{#foreach categoryPosts}}
+                                {{> "post-card" lazyLoad=true}}
+                            {{/foreach}}
+                        </div>
+                    </main>
                 </div>
             </section>
         {{/if}}
