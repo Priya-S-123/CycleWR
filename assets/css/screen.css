@@ -1684,6 +1684,18 @@ Search                         LOGO                    Login Subscribe
     display: none;
 }
 
+.gh-container.is-category .gh-container-title,
+.gh-container.is-get-involved .gh-container-title {
+    text-align: center;
+    font-size: calc(clamp(2.25rem, 1.4vw + 1.75rem, 3.25rem) * var(--factor, 1));
+    font-weight: 550;
+    letter-spacing: -0.028em;
+    text-transform: none;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: var(--grid-gap);
+}
+
 .gh-container .gh-feed {
     gap: var(--grid-gap);
 }
@@ -1863,6 +1875,19 @@ Search                         LOGO                    Login Subscribe
 
 .gh-about .gh-button {
     margin-top: 32px;
+}
+
+/* Get involved cards: space between description and button */
+.gh-container.is-get-involved .gh-card-wrapper .gh-card-excerpt {
+    margin-bottom: 1.5em;
+    display: block;
+    overflow: visible;
+    line-clamp: unset;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+}
+.gh-container.is-get-involved .gh-card-wrapper .gh-button {
+    margin-top: 1.5em;
 }
 
 .gh-recommendations {
