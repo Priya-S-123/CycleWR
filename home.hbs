@@ -1,7 +1,53 @@
 {{!< default}}
 {{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
 
-{{> "components/header" headerStyle=@custom.header_style}}
+{{!-- > "components/header" headerStyle=@custom.header_style --}}
+
+{{!-- Splide carousel: image (full height) + header & subheading per slide --}}
+<section class="gh-home-carousel gh-outer">
+    <div class="gh-inner">
+        <div class="splide gh-home-splide" id="gh-home-splide" aria-label="Home carousel">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <div class="gh-home-slide">
+                            <div class="gh-home-slide-image">
+                                <img src="{{asset "images/radwagon5-9.webp"}}" alt="Slide 1">
+                            </div>
+                            <div class="gh-home-slide-text">
+                                <h2 class="gh-home-slide-heading">Heading one</h2>
+                                <p class="gh-home-slide-subheading">Subheading or short description for this slide.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="splide__slide">
+                        <div class="gh-home-slide">
+                            <div class="gh-home-slide-image">
+                                <img src="{{asset "images/radwagon5-9.webp"}}" alt="Slide 2">
+                            </div>
+                            <div class="gh-home-slide-text">
+                                <h2 class="gh-home-slide-heading">Heading two</h2>
+                                <p class="gh-home-slide-subheading">Subheading or short description for this slide.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="splide__slide">
+                        <div class="gh-home-slide">
+                            <div class="gh-home-slide-image">
+                                <img src="{{asset "images/radwagon5-9.webp"}}" alt="Slide 3">
+                            </div>
+                            <div class="gh-home-slide-text">
+                                <h2 class="gh-home-slide-heading">Heading three</h2>
+                                <p class="gh-home-slide-subheading">Subheading or short description for this slide.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 {{#match @custom.header_style "!=" "Highlight"}}
     {{> "components/featured" showFeatured=@custom.show_featured_posts limit=4}}

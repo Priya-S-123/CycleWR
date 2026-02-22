@@ -10,7 +10,10 @@
     {{!-- Preload main styles and scripts for better performance --}}
     <link rel="preload" as="style" href="{{asset "built/screen.css"}}">
     <link rel="preload" as="script" href="{{asset "built/source.js"}}">
-    
+
+    {{!-- Splide carousel - sea-green theme (file is in css/splide/themes/) --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/splide/themes/splide-sea-green.min.css"}}">
+
     {{!-- Fonts are preloaded and defined in the default template to avoid layout shift --}}
     {{> "typography/fonts"}}
 
@@ -63,8 +66,57 @@
     {{> "lightbox"}}
 {{/is}}
 
-{{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
+{{!-- Splide must load before source.js so the carousel can initialize --}}
+<script src="{{asset "js/splide/splide.min.js"}}"></script>
+{{!-- Scripts - handle responsive videos, infinite scroll, navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
+{{!-- Home page carousel init (inline so it works even if built/source.js is not present) --}}
+{{#is "home"}}
+<script>
+(function () {
+    var el = document.querySelector('.gh-home-splide');
+    if (!el || typeof Splide === 'undefined') return;
+    var splide = new Splide('.gh-home-splide', {
+        type: 'loop',
+        perPage: 1,
+        perMove: 1,
+        gap: 0,
+        autoplay: true,
+        interval: 5000,
+        pauseOnHover: true,
+        pauseOnFocus: true,
+        arrows: true,
+        pagination: true,
+        paginationKeyboard: true,
+        speed: 400,
+        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+        drag: true,
+        keyboard: true,
+        i18n: {
+            prev: 'Previous slide',
+            next: 'Next slide',
+            first: 'Go to first slide',
+            last: 'Go to last slide',
+            slideX: 'Go to slide %s',
+            pageX: 'Page %s',
+            play: 'Start autoplay',
+            pause: 'Pause autoplay'
+        }
+    });
+    splide.on('mounted', function () {
+        var list = el.querySelector('.splide__pagination');
+        var realCount = splide.length;
+        if (list && realCount) {
+            var items = list.querySelectorAll('li');
+            for (var i = realCount; i < items.length; i++) {
+                items[i].remove();
+            }
+        }
+    });
+    splide.mount();
+})();
+</script>
+{{/is}}
 
 {{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
 {{ghost_foot}}
