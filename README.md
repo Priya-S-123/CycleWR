@@ -2,6 +2,19 @@
 
 The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Source! If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Source/releases) page.
 
+This repository contains a **customized version for CycleWR**, with a home-page image carousel, category posts section, and Get Involved component. See [CycleWR customizations](#cyclewr-customizations) below.
+
+&nbsp;
+
+# CycleWR customizations
+
+The following changes have been made on top of the base Source theme:
+
+- **Home page image carousel** – A full-width image carousel on the home page built with [Splide](https://splidejs.com/). Each slide has a full-height image plus heading and subheading. The carousel uses the `gh-home-carousel`, `gh-home-splide`, and `gh-home-slide` class names, with Splide CSS in `assets/css/splide/` and initialization in `default.hbs` (inline) and `assets/js/carousel.js`. It is responsive, supports autoplay, arrows, pagination, keyboard and drag, and uses the sea-green Splide theme.
+- **Category posts component** – A reusable partial that shows the latest 3 posts for a given tag (category). Used on the home page as “Latest from Advocacy” with configurable `tagSlug` and optional `title`. See `partials/components/category-posts.hbs`. The section title styling was updated for consistency with the rest of the theme.
+- **Get Involved component** – A home page section (`partials/components/get-involved.hbs`) with configurable titles, descriptions, and links via Ghost Admin → Design → Customize → Get Involved, so content can be edited without changing theme code.
+- **Latest post section** – The theme’s latest-post area was updated for layout and styling consistency.
+- **Theme configuration** – Theme settings were extended to support the category-posts block and related options (e.g. `post_feed_style`, header style).
 &nbsp;
 
 # First time using a Ghost theme?
