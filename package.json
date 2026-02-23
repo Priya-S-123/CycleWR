@@ -1,5 +1,5 @@
 {
-    "name": "source",
+    "name": "cyclewr-source",
     "description": "A default theme for the Ghost publishing platform",
     "demo": "https://source.ghost.io",
     "version": "1.5.0",
@@ -191,6 +191,12 @@
                 "type": "boolean",
                 "default": false,
                 "group": "homepage"
+            },
+            "home_carousel_tag": {
+                "type": "text",
+                "group": "homepage",
+                "description": "Tag slug for home carousel slides (e.g. home-carousel). Each post with this tag = one slide (feature image, title, excerpt). Order by publish date.",
+                "default": "home-carousel"
             },
             "show_post_metadata": {
                 "type": "boolean",
