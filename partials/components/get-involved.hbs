@@ -1,130 +1,30 @@
 {{!--
-    Get Involved component
+    Get Involved component – items come from posts with a given tag.
+    Each post = one card: title → card title, post body (content) → description (HTML, so links work), url → "Learn more" link.
+
     Usage:
         {{> "components/get-involved" }}
+        {{> "components/get-involved" tagSlug="get-involved" }}
 
-    Content (titles, descriptions, links) is configurable from
-    Ghost Admin → Design → Customize → Get Involved section,
-    so it can be edited without changing the theme code.
+    Configure in Ghost Admin → Design → Customize → Get Involved:
+        - get_involved_tag: tag slug for posts (e.g. get-involved-home-page). Posts with this tag appear as cards.
+        - get_involved_heading: optional section heading (default: "Get involved with CycleWR").
+    Order: by published date (oldest first). Limit 10.
+    Fallback: if no tag is set, uses "get-involved-home-page" so we never pass an empty slug to #get (which would break the page).
 --}}
-
-<section class="gh-container is-grid is-get-involved gh-outer">
-    <div class="gh-container-inner gh-inner">
-        <h2 class="gh-container-title">
-            {{#if title}}{{title}}{{else}}Get involved with CycleWR{{/if}}
-        </h2>
-        <main class="gh-main">
-            <div class="gh-feed">
-                <article class="gh-card">
-                    <div class="gh-card-wrapper">
-                        <h3 class="gh-card-title">
-                            {{#if @custom.get_involved_1_title}}
-                                {{@custom.get_involved_1_title}}
-                            {{else}}
-                                Volunteer with CycleWR
-                            {{/if}}
-                        </h3>
-                        <p class="gh-card-excerpt">
-                            {{#if @custom.get_involved_1_description}}
-                                {{@custom.get_involved_1_description}}
-                            {{else}}
-                                Help out with events, outreach, and campaigns by joining our volunteer team.
-                            {{/if}}
-                        </p>
-                        <a href="{{#if @custom.get_involved_1_url}}{{@custom.get_involved_1_url}}{{else}}{{@site.url}}/get-involved/{{/if}}" class="gh-button">
-                            Learn more
-                        </a>
-                    </div>
-                </article>
-
-                <article class="gh-card">
-                    <div class="gh-card-wrapper">
-                        <h3 class="gh-card-title">
-                            {{#if @custom.get_involved_2_title}}
-                                {{@custom.get_involved_2_title}}
-                            {{else}}
-                                Join rides with candidates
-                            {{/if}}
-                        </h3>
-                        <p class="gh-card-excerpt">
-                            {{#if @custom.get_involved_2_description}}
-                                {{@custom.get_involved_2_description}}
-                            {{else}}
-                                Ride with local candidates to experience streets together and advocate for safer cycling.
-                            {{/if}}
-                        </p>
-                        <a href="{{#if @custom.get_involved_2_url}}{{@custom.get_involved_2_url}}{{else}}{{@site.url}}/get-involved/rides-with-candidates/{{/if}}" class="gh-button">
-                            Learn more
-                        </a>
-                    </div>
-                </article>
-
-                <article class="gh-card">
-                    <div class="gh-card-wrapper">
-                        <h3 class="gh-card-title">
-                            {{#if @custom.get_involved_3_title}}
-                                {{@custom.get_involved_3_title}}
-                            {{else}}
-                                Become a board member
-                            {{/if}}
-                        </h3>
-                        <p class="gh-card-excerpt">
-                            {{#if @custom.get_involved_3_description}}
-                                {{@custom.get_involved_3_description}}
-                            {{else}}
-                                Bring your skills in advocacy, policy, communications, events, or finance to our volunteer board.
-                            {{/if}}
-                        </p>
-                        <a href="{{#if @custom.get_involved_3_url}}{{@custom.get_involved_3_url}}{{else}}{{@site.url}}/get-involved/cyclewr-board-members/{{/if}}" class="gh-button">
-                            Learn more
-                        </a>
-                    </div>
-                </article>
-
-                <article class="gh-card">
-                    <div class="gh-card-wrapper">
-                        <h3 class="gh-card-title">
-                            {{#if @custom.get_involved_4_title}}
-                                {{@custom.get_involved_4_title}}
-                            {{else}}
-                                Support our advocacy
-                            {{/if}}
-                        </h3>
-                        <p class="gh-card-excerpt">
-                            {{#if @custom.get_involved_4_description}}
-                                {{@custom.get_involved_4_description}}
-                            {{else}}
-                                Learn about our current campaigns and help push for better, safer cycling across Waterloo Region.
-                            {{/if}}
-                        </p>
-                        <a href="{{#if @custom.get_involved_4_url}}{{@custom.get_involved_4_url}}{{else}}{{@site.url}}/our-advocacy-work/{{/if}}" class="gh-button">
-                            Learn more
-                        </a>
-                    </div>
-                </article>
-
-                <article class="gh-card">
-                    <div class="gh-card-wrapper">
-                        <h3 class="gh-card-title">
-                            {{#if @custom.get_involved_5_title}}
-                                {{@custom.get_involved_5_title}}
-                            {{else}}
-                                Stay informed
-                            {{/if}}
-                        </h3>
-                        <p class="gh-card-excerpt">
-                            {{#if @custom.get_involved_5_description}}
-                                {{@custom.get_involved_5_description}}
-                            {{else}}
-                                Sign up for updates and follow us on social media to hear about events and new ways to help.
-                            {{/if}}
-                        </p>
-                        <a href="{{#if @custom.get_involved_5_url}}{{@custom.get_involved_5_url}}{{else}}{{@site.url}}/get-involved/{{/if}}" class="gh-button">
-                            Learn more
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </main>
-    </div>
-</section>
+{{!-- Resolve slug: explicit tagSlug > @custom.get_involved_tag > default "get-involved" (never pass empty to #get) --}}
+{{#if tagSlug}}
+    {{#get "posts" filter=(concat "tag:" tagSlug) limit="10" order="published_at asc" as |posts|}}
+        {{#if posts}}{{> "components/get-involved/section" posts=posts}}{{/if}}
+    {{/get}}
+{{else}}
+    {{#if @custom.get_involved_tag}}
+        {{#get "posts" filter=(concat "tag:" @custom.get_involved_tag) limit="10" order="published_at asc" as |posts|}}
+            {{#if posts}}{{> "components/get-involved/section" posts=posts}}{{/if}}
+        {{/get}}
+    {{else}}
+        {{#get "posts" filter="tag:get-involved" limit="10" order="published_at asc" as |posts|}}
+            {{#if posts}}{{> "components/get-involved/section" posts=posts}}{{/if}}
+        {{/get}}
+    {{/if}}
+{{/if}}

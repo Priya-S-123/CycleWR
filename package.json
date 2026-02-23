@@ -218,80 +218,11 @@
                 "group": "get_involved",
                 "description": "Heading text for the Get Involved section"
             },
-            "get_involved_1_title": {
+            "get_involved_tag": {
                 "type": "text",
                 "group": "get_involved",
-                "description": "Title for the first Get Involved item"
-            },
-            "get_involved_1_description": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Description for the first Get Involved item"
-            },
-            "get_involved_1_url": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "URL for the first Get Involved item"
-            },
-            "get_involved_2_title": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Title for the second Get Involved item"
-            },
-            "get_involved_2_description": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Description for the second Get Involved item"
-            },
-            "get_involved_2_url": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "URL for the second Get Involved item"
-            },
-            "get_involved_3_title": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Title for the third Get Involved item"
-            },
-            "get_involved_3_description": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Description for the third Get Involved item"
-            },
-            "get_involved_3_url": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "URL for the third Get Involved item"
-            },
-            "get_involved_4_title": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Title for the fourth Get Involved item"
-            },
-            "get_involved_4_description": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Description for the fourth Get Involved item"
-            },
-            "get_involved_4_url": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "URL for the fourth Get Involved item"
-            },
-            "get_involved_5_title": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Title for the fifth Get Involved item"
-            },
-            "get_involved_5_description": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Description for the fifth Get Involved item"
-            },
-            "get_involved_5_url": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "URL for the fifth Get Involved item"
+                "description": "Tag slug for Get Involved cards. Each post with this tag appears as one card (post title = card title, excerpt = body, post URL = Learn more link).",
+                "default": "get-involved-home-page"
             }
         }
     },

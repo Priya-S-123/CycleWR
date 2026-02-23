@@ -1,0 +1,24 @@
+<section class="gh-container is-grid is-get-involved no-image gh-outer">
+    <div class="gh-container-inner gh-inner">
+        <h2 class="gh-container-title">
+            {{#if title}}{{title}}{{else}}{{#if @custom.get_involved_heading}}{{@custom.get_involved_heading}}{{else}}Get involved with CycleWR{{/if}}{{/if}}
+        </h2>
+        <main class="gh-main">
+            <div class="gh-feed">
+                {{#foreach posts}}
+                    <article class="gh-card no-image">
+                        <a class="gh-card-link" href="{{url}}">
+                            <div class="gh-card-wrapper">
+                                <h3 class="gh-card-title is-title">{{title}}</h3>
+                                {{#if custom_excerpt}}
+                                <div class="gh-get-involved-content">{{custom_excerpt}}</div>
+                                {{/if}}
+                                <span class="gh-button">Learn more</span>
+                            </div>
+                        </a>
+                    </article>
+                {{/foreach}}
+            </div>
+        </main>
+    </div>
+</section>

@@ -48,7 +48,6 @@
     </div>
 </section>
 
-
 {{#match @custom.header_style "!=" "Highlight"}}
     {{> "components/featured" showFeatured=@custom.show_featured_posts limit=4}}
 {{/match}}
@@ -58,6 +57,6 @@
 {{!-- Top 3 posts from a category: set tagSlug to your tag slug (e.g. "news") and optionally title --}}
 {{> "components/category-posts" tagSlug="bicycle-racks" title="Latest from Advocacy" postFeedStyle=@custom.post_feed_style }}
 
-{{> "components/get-involved"}}
+{{> "components/get-involved" tagSlug=@custom.get_involved_tag}}
 
 {{!-- > "components/post-list" feed="home" postFeedStyle=@custom.post_feed_style showTitle=true showSidebar=@custom.show_publication_info_sidebar --}}
