@@ -70,10 +70,22 @@
 <script src="{{asset "js/splide/splide.min.js"}}"></script>
 {{!-- Scripts - handle responsive videos, infinite scroll, navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
-{{!-- Home page carousel init (inline so it works even if built/source.js is not present) --}}
+{{!-- Home page: render markdown in carousel subheadings, then init Splide carousel --}}
 {{#is "home"}}
 <script>
+function renderCarouselMarkdown() {
+    var nodes = document.querySelectorAll('.gh-home-slide-subheading[data-markdown]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var raw = el.getAttribute('data-markdown');
+        if (raw && typeof marked !== 'undefined') { el.innerHTML = marked.parse(raw); }
+    }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js" crossorigin="anonymous" onload="renderCarouselMarkdown()"></script>
+<script>
 (function () {
+    if (typeof renderCarouselMarkdown === 'function') { renderCarouselMarkdown(); }
     var el = document.querySelector('.gh-home-splide');
     if (!el || typeof Splide === 'undefined') return;
     var splide = new Splide('.gh-home-splide', {
