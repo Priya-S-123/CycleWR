@@ -2,7 +2,7 @@
 
 The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Source! If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Source/releases) page.
 
-This repository contains a **customized version for CycleWR**, with a home-page image carousel, category posts section, and Get Involved component. See [CycleWR customizations](#cyclewr-customizations) below.
+This repository contains a **customized version for CycleWR**, with an image carousel (snippet-based), category posts section, and Get Involved component. See [CycleWR customizations](#cyclewr-customizations) below.
 
 &nbsp;
 
@@ -10,7 +10,7 @@ This repository contains a **customized version for CycleWR**, with a home-page 
 
 The following changes have been made on top of the base Source theme:
 
-- **Home page image carousel** – A full-width image carousel on the home page built with [Splide](https://splidejs.com/). Each slide has a full-height image plus heading and subheading. The carousel uses the `gh-home-carousel`, `gh-home-splide`, and `gh-home-slide` class names, with Splide CSS in `assets/css/splide/` and initialization in `default.hbs` (inline) and `assets/js/carousel.js`. It is responsive, supports autoplay, arrows, pagination, keyboard and drag, and uses the sea-green Splide theme.
+- **Image carousel (snippet)** – Site contributors can add an image carousel to any page by inserting a custom snippet. A script in `assets/js/image-carousel.js` finds any element with class `image-carousel` (e.g. from a Ghost custom snippet), turns each child “product card” (image + title + description) into a [Splide](https://splidejs.com/) slide, and matches header/footer width with rounded corners. In your snippet, wrap the block in a div with class `image-carousel`; each card can be a div with class `product-card` or any direct child that contains an image, a heading (h1–h4 or `.product-title`), and a paragraph or `.product-description`. Splide CSS is in `assets/css/splide/` (sea-green theme).
 - **Category posts component** – A reusable partial that shows the latest 3 posts for a given tag (category). Used on the home page as “Latest from Advocacy” with configurable `tagSlug` and optional `title`. See `partials/components/category-posts.hbs`. The section title styling was updated for consistency with the rest of the theme.
 - **Get Involved component** – A home page section (`partials/components/get-involved.hbs`) that lists “ways to get involved” from **posts with a specific tag** (e.g. `get-involved`). Each post is shown as a card: post **title** = card title, post **excerpt** = body text, post **URL** = “Learn more” link. Configure the tag in Ghost Admin → Design → Customize → Get Involved (`get_involved_tag`); the section heading is optional (`get_involved_heading`). No per-item custom configs needed.
 - **Latest post section** – The theme’s latest-post area was updated for layout and styling consistency.

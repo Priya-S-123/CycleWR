@@ -66,69 +66,10 @@
     {{> "lightbox"}}
 {{/is}}
 
-{{!-- Splide must load before source.js so the carousel can initialize --}}
+{{!-- Splide must load before source.js so image-carousel.js can initialize --}}
 <script src="{{asset "js/splide/splide.min.js"}}"></script>
-{{!-- Scripts - handle responsive videos, infinite scroll, navigation dropdowns --}}
+{{!-- Scripts - handle responsive videos, infinite scroll, navigation dropdowns, image carousel --}}
 <script src="{{asset "built/source.js"}}"></script>
-{{!-- Home page: render markdown in carousel subheadings, then init Splide carousel --}}
-{{#is "home"}}
-<script>
-function renderCarouselMarkdown() {
-    var nodes = document.querySelectorAll('.gh-home-slide-subheading[data-markdown]');
-    for (var i = 0; i < nodes.length; i++) {
-        var el = nodes[i];
-        var raw = el.getAttribute('data-markdown');
-        if (raw && typeof marked !== 'undefined') { el.innerHTML = marked.parse(raw); }
-    }
-}
-</script>
-<script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js" crossorigin="anonymous" onload="renderCarouselMarkdown()"></script>
-<script>
-(function () {
-    if (typeof renderCarouselMarkdown === 'function') { renderCarouselMarkdown(); }
-    var el = document.querySelector('.gh-home-splide');
-    if (!el || typeof Splide === 'undefined') return;
-    var splide = new Splide('.gh-home-splide', {
-        type: 'loop',
-        perPage: 1,
-        perMove: 1,
-        gap: 0,
-        autoplay: true,
-        interval: 5000,
-        pauseOnHover: true,
-        pauseOnFocus: true,
-        arrows: true,
-        pagination: true,
-        paginationKeyboard: true,
-        speed: 400,
-        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-        drag: true,
-        keyboard: true,
-        i18n: {
-            prev: 'Previous slide',
-            next: 'Next slide',
-            first: 'Go to first slide',
-            last: 'Go to last slide',
-            slideX: 'Go to slide %s',
-            pageX: 'Page %s',
-            play: 'Start autoplay',
-            pause: 'Pause autoplay'
-        }
-    });
-    splide.on('mounted', function () {
-        var list = el.querySelector('.splide__pagination');
-        var realCount = splide.length;
-        if (list && realCount) {
-            var items = list.querySelectorAll('li');
-            for (var i = realCount; i < items.length; i++) {
-                items[i].remove();
-            }
-        }
-    });
-    splide.mount();
-})();
-</script>
-{{/is}}
 
 {{!-- Ghost outputs required functional scripts with this tag, it should always be the last thing before the closing body tag --}}
 {{ghost_foot}}

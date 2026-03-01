@@ -192,12 +192,6 @@
                 "default": false,
                 "group": "homepage"
             },
-            "home_carousel_tag": {
-                "type": "text",
-                "group": "homepage",
-                "description": "Tag slug for home carousel slides (e.g. home-carousel). Each post with this tag = one slide (feature image, title, excerpt). Order by publish date.",
-                "default": "home-carousel"
-            },
             "show_post_metadata": {
                 "type": "boolean",
                 "default": true,
