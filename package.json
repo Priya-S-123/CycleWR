@@ -17,7 +17,7 @@
         "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; else echo \"Uncomitted changes found.\" && exit 1; fi",
         "postship": "git fetch && gulp release"
     },
-    "author": {
+    "author"
         "name": "Ghost Foundation",
         "email": "hello@ghost.org",
         "url": "https://ghost.org/"
@@ -206,11 +206,6 @@
                 "type": "boolean",
                 "default": true,
                 "group": "post"
-            },
-            "get_involved_heading": {
-                "type": "text",
-                "group": "get_involved",
-                "description": "Heading text for the Get Involved section"
             },
             "get_involved_tag": {
                 "type": "text",
