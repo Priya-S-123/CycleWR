@@ -1,0 +1,33 @@
+{{!< default}}
+{{!--
+    Custom page template: same as default page but adds the category-posts block below the content.
+    In Ghost admin, open any page → Settings (gear) → Template → choose "With category posts".
+    To change tag or title, edit the partial call below (same as in home.hbs).
+--}}
+
+{{#post}}
+
+<main class="gh-main">
+    <article class="gh-article {{post_class}}">
+
+        {{#match @page.show_title_and_feature_image}}
+            <header class="gh-article-header gh-canvas">
+                <h1 class="gh-article-title is-title">{{title}}</h1>
+                {{#if custom_excerpt}}
+                    <p class="gh-article-excerpt is-body">{{custom_excerpt}}</p>
+                {{/if}}
+                {{> "feature-image"}}
+            </header>
+        {{/match}}
+
+        <section class="gh-content gh-canvas is-body">
+            {{content}}
+        </section>
+
+    </article>
+</main>
+
+{{!-- Category posts – edit tagSlug and title here to match your category --}}
+{{> "components/category-posts" tagSlug="bicycle-racks" title="Latest from Advocacy" postFeedStyle=@custom.post_feed_style}}
+
+{{/post}}
