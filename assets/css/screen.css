@@ -1702,6 +1702,20 @@ Search                         LOGO                    Login Subscribe
     overflow: hidden;
 }
 
+/* Image carousel: on phone only, stack image on top of text so both use full width */
+@media (max-width: 576px) {
+    .image-carousel .gh-home-slide {
+        flex-direction: column;
+    }
+    .image-carousel .gh-home-slide-image {
+        width: 100%;
+        flex: 0 0 auto;
+    }
+    .image-carousel .gh-home-slide-text {
+        padding: 24px 20px;
+    }
+}
+
 /* 11. Container
 /* ---------------------------------------------------------- */
 
