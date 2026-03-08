@@ -7,15 +7,12 @@
     function runEmbed(el) {
         var tag = el.getAttribute('data-tag') || '';
         var limit = parseInt(el.getAttribute('data-limit'), 10) || 6;
-        var title = el.getAttribute('data-title') || 'Latest posts';
         var apiKey = el.getAttribute('data-api-key') || '';
         var noImage = el.getAttribute('data-no-image') === 'true';
         var feed = el.querySelector('.gh-feed');
-        var titleEl = el.querySelector('.gh-container-title');
         var section = el.querySelector('.gh-container');
 
         if (!feed) return;
-        if (titleEl) titleEl.textContent = title;
         if (section && noImage) section.classList.add('no-image');
 
         if (!tag || !apiKey) {
