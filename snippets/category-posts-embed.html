@@ -1,0 +1,21 @@
+<!--
+  Top 6 posts by category/tag – paste this into a Ghost page via the "HTML" block.
+  Same HTML structure as partials/components/category-posts.hbs; theme JS injects the post cards.
+  Replace TAG_SLUG and YOUR_CONTENT_API_KEY. Optional: data-limit, data-title, data-no-image.
+-->
+<div class="gh-category-posts-embed"
+     data-tag="TAG_SLUG"
+     data-limit="6"
+     data-title="Latest posts"
+     data-api-key="YOUR_CONTENT_API_KEY">
+  <section class="gh-container is-category is-grid gh-outer">
+    <div class="gh-container-inner gh-inner">
+      <h2 class="gh-container-title"></h2>
+      <main class="gh-main">
+        <div class="gh-feed">
+          <p class="gh-category-posts-loading">Loading…</p>
+        </div>
+      </main>
+    </div>
+  </section>
+</div>

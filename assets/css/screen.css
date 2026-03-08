@@ -2025,6 +2025,57 @@ Search                         LOGO                    Login Subscribe
     }
 }
 
+/* 12.2.2. Category posts embed (HTML block) – same structure as category-posts.hbs partial */
+/* Break out of content column so the section has full width like on the home page */
+.gh-content .gh-category-posts-embed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.gh-category-posts-embed .gh-container.is-category.is-grid .gh-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+    row-gap: calc(var(--grid-gap) * 1.5);
+    overflow: hidden;
+}
+
+/* Embed cards: image above title (override category’s side-by-side layout) */
+.gh-category-posts-embed .gh-container.is-category.is-grid .gh-card-link {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.gh-category-posts-embed .gh-container.is-category.is-grid .gh-card-image {
+    width: 100%;
+    flex-shrink: 0;
+    aspect-ratio: 1.618033;
+}
+
+/* Embed cards: show full excerpt (override theme -webkit-line-clamp: 2) */
+.gh-category-posts-embed .gh-card-excerpt {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    -webkit-box-orient: unset;
+}
+
+@media (max-width: 767px) {
+    .gh-category-posts-embed .gh-container.is-category.is-grid .gh-feed {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .gh-category-posts-embed .gh-container.is-category.is-grid .gh-feed {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* 12.3. No image list */
 
 .gh-container.is-list.no-image .gh-card-image {
