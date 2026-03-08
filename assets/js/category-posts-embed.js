@@ -26,7 +26,7 @@
         var base = window.location.origin;
         var url = base + '/ghost/api/v3/content/posts/?filter=tag:' + encodeURIComponent(tag) +
             '&limit=' + limit + '&key=' + encodeURIComponent(apiKey) +
-            '&include=authors&fields=id,title,url,feature_image,feature_image_alt,custom_excerpt,excerpt,published_at,primary_tag,authors';
+            '&include=authors&fields=id,title,url,feature_image,feature_image_alt,custom_excerpt,excerpt,published_at,primary_tag';
 
         fetch(url)
             .then(function (r) { return r.json(); })
